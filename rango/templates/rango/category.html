@@ -1,0 +1,32 @@
+{% extends "rango/base.html" %}
+{% load static %}
+
+{% block title_block %}
+  Category Details{% if category %} - {{ category.name }}{% endif %}
+{% endblock %}
+
+{% block body_block %}
+  <div>
+    {% if category %}
+      <h1>{{ category.name }}</h1>
+      <!-- 返回首页的链接 -->
+      <p><a href="{% url 'rango:index' %}">Back to Home</a></p>
+      <!-- 添加页面的链接，传入 category.slug 作为参数 -->
+      <p><a href="{% url 'rango:add_page' category.slug %}">Add a Page</a></p>
+
+      {% if pages %}
+        <ul>
+          {% for page in pages %}
+            <li>
+              <a href="{{ page.url }}">{{ page.title }}</a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <strong>No pages currently in category.</strong>
+      {% endif %}
+    {% else %}
+      <p>The specified category does not exist.</p>
+    {% endif %}
+  </div>
+{% endblock %}

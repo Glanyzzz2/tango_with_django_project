@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+    <title>About Rango</title>
+</head>
+<body>
+    <h1>Rango says...</h1>
+    <p>here is the about page.</p>
+
+    <div>
+        <a href="{% url 'rango:about' %}">About</a>
+    </div>
+
+    <div>
+        <!-- 显示静态文件中的 Rango 图片 -->
+        <img src="{% static 'images/rango.jpg' %}" alt="Picture of Rango" />
+    </div>
+
+    <div>
+        <!-- 显示媒体文件中的 cat.jpg 图片 (用户上传) -->
+        <img src="{{ MEDIA_URL }}cat.jpg" alt="Picture of a Cat" />
+    </div>
+
+    <div>
+        <!-- 显示你的名字或其他信息 -->
+        <p>{{ boldmessage }}</p>
+    </div>
+</body>
+</html>
